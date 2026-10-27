@@ -1,4 +1,4 @@
-# json is stupid — air con
+# AC Website
 
 Air conditioning sales and fitting site. Three tiers: Budget (Midea), Advanced (Haier), Luxury (Daikin).
 
