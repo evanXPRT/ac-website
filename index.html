@@ -89,6 +89,7 @@ input[type=range]:hover::-webkit-slider-thumb { box-shadow: 0 0 0 5px rgb(255 25
 .intro { position: absolute; left: var(--inset); bottom: var(--inset); z-index: 3; width: clamp(300px, 26vw, 620px); }
 .logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: clamp(20px, 1.8vw, 44px); font-size: clamp(18px, 1.3vw, 30px); font-weight: 800; letter-spacing: -.05em; text-transform: lowercase; text-decoration: none; }
 .logo i { width: var(--square); height: var(--square); background: #fff; }
+.logo--top { display: none; }
 .intro h2 { margin: 0; font-size: clamp(31px, 2.55vw, 66px); font-weight: 700; line-height: .86; text-transform: uppercase; letter-spacing: -.03em; }
 .intro h2 span { display: block; white-space: nowrap; }
 .intro h2 span:first-child { padding-left: 50%; }
@@ -190,7 +191,8 @@ input[type=range]:hover::-webkit-slider-thumb { box-shadow: 0 0 0 5px rgb(255 25
   .panel, .nav, .title, .readout, .intro, .callout { position: relative; inset: auto; top: auto; left: auto; right: auto; bottom: auto; width: auto; }
   .nav { order: 0; align-self: stretch; }
   .nav a { flex: 1; justify-content: center; min-height: 44px; font-size: 14px; padding: 0 8px; }
-  .nav a.hide-sm { display: none; }
+  .logo--top { display: inline-flex; order: -1; min-height: 44px; margin: 0; position: relative; z-index: 5; }
+  .intro .logo { display: none; }
   .title { order: 1; margin-top: 30svh; font-size: clamp(64px, 19vw, 140px); line-height: .83; }
   .title span:first-child { margin-left: 0; }
   .readout { order: 2; }
@@ -209,6 +211,17 @@ input[type=range]:hover::-webkit-slider-thumb { box-shadow: 0 0 0 5px rgb(255 25
   .book { grid-template-columns: minmax(0, 1fr); }
   .book__left, .book__right { padding: 32px max(16px, env(safe-area-inset-right, 0px)) 32px max(16px, env(safe-area-inset-left, 0px)); }
 }
+@media (max-width: 480px) {
+  .nav a.hide-sm { display: none; }
+}
+/* finger-sized controls on touch screens */
+@media (pointer: coarse), (max-width: 900px) {
+  input[type=range] { height: 44px; }
+  input[type=range]::-webkit-slider-thumb { width: 22px; height: 22px; margin-top: -10px; }
+  input[type=range]::-moz-range-thumb { width: 22px; height: 22px; }
+  .power { min-height: 44px; padding: 8px 14px; }
+  .ctl label { font-size: 15px; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
@@ -221,6 +234,7 @@ input[type=range]:hover::-webkit-slider-thumb { box-shadow: 0 0 0 5px rgb(255 25
   <div class="experience" id="home">
     <div class="hero" id="hero">
       <canvas id="air" aria-hidden="true"></canvas>
+      <a class="logo logo--top" href="#home"><i></i>ac website</a>
 
       <section class="panel glass fade" aria-labelledby="try-heading">
         <div class="panel__head">
@@ -244,8 +258,8 @@ input[type=range]:hover::-webkit-slider-thumb { box-shadow: 0 0 0 5px rgb(255 25
       </section>
 
       <nav class="nav fade" aria-label="Main">
-        <a href="#prices" class="hide-sm">Prices</a>
-        <a href="#how">How it works</a>
+        <a href="#prices">Prices</a>
+        <a href="#how" class="hide-sm">How it works</a>
         <a href="#book" class="is-cta">Book free survey</a>
       </nav>
 
